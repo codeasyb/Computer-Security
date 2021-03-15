@@ -1,0 +1,59 @@
+
+========================================================================
+An example how someone added text from a file into the dictionary
+
+file = open("location of the file", "r")
+d = {}
+
+for line in file:
+    x = line.split(",")
+    a = x[0]
+    b = x[1]
+    c = len(b)-1
+    b = b[0:c]
+    d[a] = b
+
+========================================================================
+========================================================================
+# Writing dictionary tp json file
+import json 
+
+myRecord = {
+    'name': 'jay',
+    'age': 29,
+    'occupation': 'unemployed'
+}
+
+j = json.dumps(myRecord)
+with open('myRecords.json', 'w') as f:
+    f.write(j)
+    f.close()
+
+# Now reading from the json file
+myRecord = json.load(open(myRecords.json))
+print(myRecord)
+
+========================================================================
+========================================================================
+# Reading Json file and and store its contents in a dictionary
+import json 
+import os
+
+# Path to config.json file
+cwd = os.getcwd()
+jsonfilepath = '%s%s'  (cwd, 'filename.json')
+
+# dictionary holding filename.json values
+config_properties = {}
+
+try:
+    with open(jsonfilepath) as dFile:
+        config_properties = json.load(dFile)
+except IoError as e:
+    print(e)
+    print('cant open file ')
+    exit(1)
+
+print(config_properties)
+
+========================================================================
